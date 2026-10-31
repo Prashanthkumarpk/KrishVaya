@@ -145,6 +145,7 @@ export default function App() {
               fade
             />
           </div>
+          <h1 className="hero-brand">KrishVaya</h1>
           <p className="hero-tagline" aria-hidden="true">Guidance for Every Emotion</p>
         </div>
         <div className="shade" aria-hidden="true" />
