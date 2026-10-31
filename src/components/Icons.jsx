@@ -54,6 +54,44 @@ export const HeartIcon = make(
   <path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.6 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z" />,
 )
 
+// A vertical bansuri with a peacock feather, used as the brand divider in the header.
+export function FluteIcon({ className }) {
+  return (
+    <svg viewBox="0 0 32 76" className={className} aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="kvFluteBody" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#f9dd95" />
+          <stop offset="0.5" stopColor="#e6b34a" />
+          <stop offset="1" stopColor="#8f651c" />
+        </linearGradient>
+        <linearGradient id="kvFeather" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#49d0a8" />
+          <stop offset="1" stopColor="#1b8a8f" />
+        </linearGradient>
+      </defs>
+      {/* tassel string and peacock feather */}
+      <path d="M16 8c4.4 1.4 7.2 4 8.8 8.4" fill="none" stroke="#e6b34a" strokeWidth="1.3" strokeLinecap="round" />
+      <g transform="rotate(26 25 23)">
+        <ellipse cx="25" cy="23" rx="4.4" ry="8" fill="url(#kvFeather)" />
+        <ellipse cx="25" cy="24.4" rx="2.2" ry="3.6" fill="#16255a" />
+        <circle cx="25" cy="23.6" r="1.2" fill="#ffd777" />
+      </g>
+      {/* body, sheen and bindings */}
+      <rect x="9" y="4" width="11" height="68" rx="5.5" fill="url(#kvFluteBody)" stroke="#6b4a1d" strokeWidth="1" />
+      <rect x="11.2" y="6" width="2.2" height="64" rx="1.1" fill="#fff3cf" opacity="0.55" />
+      <rect x="7.8" y="11" width="13.4" height="3.4" rx="1.7" fill="#ffd777" stroke="#8a5f12" strokeWidth="0.7" />
+      <rect x="7.8" y="61.6" width="13.4" height="3.4" rx="1.7" fill="#ffd777" stroke="#8a5f12" strokeWidth="0.7" />
+      {/* blow hole and finger holes */}
+      <ellipse cx="14.5" cy="20.5" rx="2.4" ry="2.9" fill="#4a2f10" />
+      <circle cx="14.5" cy="30" r="2" fill="#4a2f10" />
+      <circle cx="14.5" cy="37" r="2" fill="#4a2f10" />
+      <circle cx="14.5" cy="44" r="2" fill="#4a2f10" />
+      <circle cx="14.5" cy="51" r="2" fill="#4a2f10" />
+      <circle cx="14.5" cy="57.5" r="2" fill="#4a2f10" />
+    </svg>
+  )
+}
+
 export function LotusIcon({ size = 44 }) {
   return (
     <svg viewBox="0 0 64 44" width={size} height={(size * 44) / 64} aria-hidden="true" focusable="false">

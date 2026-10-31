@@ -180,14 +180,24 @@ button {
 }
 
 /* ---------- Header ---------- */
+/* a floating glass pill: the fixed hero shows through the blur */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: calc(clamp(8px, 1.6vh, 22px) + env(safe-area-inset-top)) calc(var(--gutter) + env(safe-area-inset-right))
-    clamp(8px, 1.4vh, 20px) calc(var(--gutter) + env(safe-area-inset-left));
-  background: linear-gradient(to bottom, rgba(11, 20, 48, 0.45), rgba(11, 20, 48, 0));
+  margin: calc(clamp(10px, 1.6vh, 18px) + env(safe-area-inset-top)) calc(var(--gutter) + env(safe-area-inset-right)) 0
+    calc(var(--gutter) + env(safe-area-inset-left));
+  padding: clamp(7px, 1vh, 11px) clamp(12px, 1.3vw, 20px) clamp(7px, 1vh, 11px) clamp(10px, 1vw, 16px);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 215, 119, 0.28);
+  background: linear-gradient(115deg, rgba(59, 47, 122, 0.42), rgba(11, 20, 48, 0.5) 45%, rgba(22, 37, 90, 0.38));
+  -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  backdrop-filter: blur(16px) saturate(1.35);
+  box-shadow:
+    0 14px 38px rgba(3, 7, 20, 0.35),
+    inset 0 1px 0 rgba(255, 236, 196, 0.25),
+    inset 0 0 30px rgba(255, 215, 119, 0.05);
 }
 
 .brand {
@@ -224,12 +234,15 @@ button {
   object-fit: cover;
 }
 
-.brand-divider {
+.brand-flute {
   flex: none;
-  width: 1px;
-  height: clamp(34px, 5vh, 46px);
-  margin: 0 clamp(12px, 1.2vw, 18px);
-  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  margin: 0 clamp(10px, 1vw, 16px) 0 clamp(8px, 0.8vw, 12px);
+  filter: drop-shadow(0 0 7px rgba(255, 215, 119, 0.35));
+}
+.brand-flute svg {
+  display: block;
+  height: clamp(44px, 6vh, 58px);
+  width: auto;
 }
 
 .brand-title {
@@ -239,8 +252,11 @@ button {
   font-size: clamp(1.7rem, min(3vw, 4.8vh), 2.8rem);
   line-height: 1;
   letter-spacing: 0.02em;
-  color: var(--gold);
-  text-shadow: 0 2px 16px rgba(5, 9, 24, 0.75);
+  background: linear-gradient(115deg, #ffe2a0 5%, var(--bright-gold) 35%, var(--gold) 62%, #c9912e 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(5, 9, 24, 0.55));
 }
 .brand-sub {
   margin: 3px 0 0;
@@ -262,12 +278,11 @@ button {
   display: inline-grid;
   place-items: center;
   height: 44px;
-  border: 1px solid rgba(230, 179, 74, 0.65);
-  background: rgba(11, 20, 48, 0.55);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 215, 119, 0.42);
+  background: linear-gradient(150deg, rgba(255, 236, 196, 0.18), rgba(255, 236, 196, 0.03) 45%, rgba(11, 20, 48, 0.28));
   color: var(--bright-gold);
-  transition: background-color 0.9s ease, border-color 0.9s ease, box-shadow 1.2s ease, color 0.9s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 243, 207, 0.32), 0 4px 12px rgba(3, 7, 20, 0.22);
+  transition: border-color 0.9s ease, box-shadow 1.2s ease, filter 0.9s ease;
 }
 .round-btn {
   width: 44px;
@@ -282,9 +297,9 @@ button {
 }
 .round-btn:hover,
 .pill-btn:hover {
-  background: rgba(22, 37, 90, 0.85);
   border-color: var(--bright-gold);
-  box-shadow: 0 0 18px rgba(255, 215, 119, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 243, 207, 0.4), 0 0 18px rgba(255, 215, 119, 0.4);
+  filter: brightness(1.22);
 }
 
 /* ---------- Main band: guidance card + floating quote ---------- */
@@ -879,7 +894,8 @@ button {
   );
 }
 [data-theme='day'] .header {
-  background: linear-gradient(to bottom, rgba(22, 37, 90, 0.6), rgba(22, 37, 90, 0));
+  background: linear-gradient(115deg, rgba(246, 231, 200, 0.2), rgba(59, 47, 122, 0.28) 55%, rgba(246, 231, 200, 0.12));
+  border-color: rgba(255, 215, 119, 0.5);
 }
 
 /* ---------- Keyframes ---------- */
@@ -984,9 +1000,9 @@ button {
   .header {
     order: 0;
     gap: 8px;
-    padding: calc(8px + env(safe-area-inset-top)) calc(12px + env(safe-area-inset-right)) 8px
-      calc(12px + env(safe-area-inset-left));
-    background: none;
+    margin: calc(8px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) 0
+      calc(10px + env(safe-area-inset-left));
+    padding: 7px 10px 7px 9px;
   }
   .emblem {
     width: 40px;
@@ -995,7 +1011,7 @@ button {
   .emblem-glyph {
     font-size: 22px;
   }
-  .brand-divider,
+  .brand-flute,
   .brand-sub {
     display: none;
   }
@@ -1004,7 +1020,8 @@ button {
     margin-left: 10px;
   }
   .brand-title {
-    font-size: 1.6rem;
+    font-size: clamp(1.1rem, 5vw, 1.55rem);
+    white-space: nowrap;
   }
   .header-actions {
     gap: 6px;
@@ -1150,6 +1167,26 @@ button {
   }
   .foot-right {
     text-align: center;
+  }
+}
+
+@media (max-width: 374px) {
+  .emblem {
+    width: 36px;
+    height: 36px;
+  }
+  .emblem-glyph {
+    font-size: 20px;
+  }
+  .brand-text {
+    margin-left: 8px;
+  }
+  .header-actions {
+    gap: 4px;
+  }
+  .pill-btn {
+    padding: 0 10px;
+    font-size: 0.9rem;
   }
 }
 

@@ -1,4 +1,4 @@
-import { MoonIcon, SpeakerOffIcon, SpeakerOnIcon, SunIcon } from './Icons.jsx'
+import { FluteIcon, MoonIcon, SpeakerOffIcon, SpeakerOnIcon, SunIcon } from './Icons.jsx'
 import SoftImg from './SoftImg.jsx'
 import { asset } from '../lib.js'
 
@@ -11,7 +11,9 @@ export default function Header({ theme, onToggleTheme, onAbout, audioOn, onToggl
           <span className="emblem-glyph" lang="sa" aria-hidden="true">ॐ</span>
           <SoftImg src={asset('images/om.svg')} alt="" width={56} height={56} className="emblem-img" />
         </span>
-        <span className="brand-divider" aria-hidden="true" />
+        <span className="brand-flute" aria-hidden="true">
+          <FluteIcon />
+        </span>
         <div className="brand-text">
           <h1 className="brand-title">KrishVaya</h1>
           <p className="brand-sub">Guidance for Every Emotion</p>
