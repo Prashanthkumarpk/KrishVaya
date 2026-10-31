@@ -1,3 +1,4 @@
+import { forwardRef } from 'react'
 import { MOOD_ICONS } from './Icons.jsx'
 import SoftImg from './SoftImg.jsx'
 import { asset } from '../lib.js'
@@ -43,9 +44,9 @@ function Tile({ feeling, selected, onPick, onHover }) {
   )
 }
 
-export default function Tiles({ feelings, selectedId, onPick, onHover }) {
+const Tiles = forwardRef(function Tiles({ feelings, selectedId, onPick, onHover }, ref) {
   return (
-    <section className="feelings" aria-labelledby="feel-heading">
+    <section className="feelings" aria-labelledby="feel-heading" ref={ref}>
       <h2 className="feel-heading" id="feel-heading">
         <span>How are you feeling today?</span>
       </h2>
@@ -56,4 +57,6 @@ export default function Tiles({ feelings, selectedId, onPick, onHover }) {
       </div>
     </section>
   )
-}
+})
+
+export default Tiles

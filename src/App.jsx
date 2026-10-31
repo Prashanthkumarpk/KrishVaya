@@ -33,6 +33,7 @@ export default function App() {
 
   const stageRef = useRef(null)
   const cardRef = useRef(null)
+  const feelingsRef = useRef(null)
   const glitterRef = useRef(null)
   const timers = useRef([])
   const toastTimer = useRef(0)
@@ -82,11 +83,22 @@ export default function App() {
     )
   }
 
+  // On stacked layouts the card can be off-screen, so bring it into view after a choice.
+  const showCard = () => {
+    if (!window.matchMedia('(max-width: 1100px)').matches) return
+    cardRef.current?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' })
+  }
+
+  const showFeelings = () => {
+    feelingsRef.current?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' })
+  }
+
   const pickFeeling = (id) => {
     const feeling = FEELINGS.find((f) => f.id === id)
     setFeelingId(id)
     setTint(feeling.tint)
     swapSlip(pickSlip(id, slip.id), id)
+    showCard()
     timers.current.push(setTimeout(() => glitterRef.current?.release(), 2500))
   }
 
@@ -124,6 +136,7 @@ export default function App() {
               fade
             />
           </div>
+          <p className="hero-tagline" aria-hidden="true">Guidance for Every Emotion</p>
         </div>
         <div className="shade" aria-hidden="true" />
         <div className="tint" style={{ backgroundColor: tint || '#e6b34a', opacity: tint ? undefined : 0 }} aria-hidden="true" />
@@ -146,11 +159,12 @@ export default function App() {
             reveal={reveal}
             onApply={() => setBreathSlip(slip)}
             onDraw={drawAnother}
+            onChoose={showFeelings}
           />
           <FloatingQuote quotes={QUOTES} />
         </main>
 
-        <Tiles feelings={FEELINGS} selectedId={feelingId} onPick={pickFeeling} onHover={hoverTile} />
+        <Tiles ref={feelingsRef} feelings={FEELINGS} selectedId={feelingId} onPick={pickFeeling} onHover={hoverTile} />
 
         <footer className="footer">
           <p className="foot-left">

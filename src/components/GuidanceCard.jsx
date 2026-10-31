@@ -3,7 +3,7 @@ import { BulbIcon, LotusIcon, RocketIcon } from './Icons.jsx'
 
 // phase: 'idle' | 'out' (rolling up) | 'in' (unrolling). `reveal` changes on every new slip
 // so the lines remount and fade in again, 120ms apart.
-const GuidanceCard = forwardRef(function GuidanceCard({ slip, phase, reveal, onApply, onDraw }, ref) {
+const GuidanceCard = forwardRef(function GuidanceCard({ slip, phase, reveal, onApply, onDraw, onChoose }, ref) {
   const line = (i) => ({ '--i': i })
   return (
     <section className="card" ref={ref} aria-label="Gita guidance">
@@ -45,6 +45,9 @@ const GuidanceCard = forwardRef(function GuidanceCard({ slip, phase, reveal, onA
           </button>
           <button type="button" className="text-link" onClick={onDraw}>
             Draw another
+          </button>
+          <button type="button" className="text-link choose-link" onClick={onChoose}>
+            Choose another feeling
           </button>
         </div>
       </div>
