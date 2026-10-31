@@ -27,6 +27,10 @@ export default function App() {
   const [phase, setPhase] = useState('idle')
   const [reveal, setReveal] = useState(0)
   const [theme, setTheme] = useState(() => (readStore(THEME_KEY, 'dusk') === 'day' ? 'day' : 'dusk'))
+  const [intention, setIntention] = useState(() => {
+    const saved = readStore(INTENTION_KEY)
+    return saved && saved.date === todayKey() && saved.action ? saved : null
+  })
   const [about, setAbout] = useState(false)
   const [breathSlip, setBreathSlip] = useState(null)
   const [toast, setToast] = useState('')
@@ -111,16 +115,21 @@ export default function App() {
 
   const finishBreathing = () => {
     const feeling = FEELINGS.find((f) => f.id === slipFeeling)
-    writeStore(INTENTION_KEY, {
+    const saved = {
       date: todayKey(),
       id: breathSlip.id,
       ref: breathSlip.ref,
       feeling: feeling ? feeling.id : null,
       quote: breathSlip.quote,
       action: breathSlip.action,
-    })
+    }
+    writeStore(INTENTION_KEY, saved)
+    setIntention(saved)
     notify('Intention saved')
   }
+
+  // Today's intention leads the floating quote, so the saved slip has a visible home.
+  const quotes = intention ? [`Today's intention: ${intention.action}`, ...QUOTES] : QUOTES
 
   return (
     <>
@@ -161,7 +170,7 @@ export default function App() {
             onDraw={drawAnother}
             onChoose={showFeelings}
           />
-          <FloatingQuote quotes={QUOTES} />
+          <FloatingQuote quotes={quotes} />
         </main>
 
         <Tiles ref={feelingsRef} feelings={FEELINGS} selectedId={feelingId} onPick={pickFeeling} onHover={hoverTile} />

@@ -46,6 +46,8 @@ button {
   font: inherit;
   color: inherit;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /* Visible keyboard focus: lotus pink with a dark inner ring so it reads on both parchment and night. */
@@ -485,13 +487,14 @@ button {
   color: var(--ink);
 }
 
-/* On short windows the transliteration is dropped so the card can keep a readable size. */
+/* On short windows the transliteration and the card heading are dropped so the verse text can stay readable. */
 @container (max-height: 470px) {
-  .iast {
+  .iast,
+  .card-heading {
     display: none;
   }
   .card {
-    --f: clamp(10.5px, calc((100cqh - 30px) / 34.5), 22px);
+    --f: clamp(10.5px, calc((100cqh - 30px) / 31.5), 22px);
   }
 }
 

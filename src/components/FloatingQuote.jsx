@@ -7,6 +7,12 @@ export default function FloatingQuote({ quotes }) {
   const [index, setIndex] = useState(0)
   const [shown, setShown] = useState(true)
 
+  // When the first line changes (e.g. an intention was just saved), show it right away.
+  useEffect(() => {
+    setIndex(0)
+    setShown(true)
+  }, [quotes[0]])
+
   useEffect(() => {
     if (quotes.length < 2) return undefined
     let swap
